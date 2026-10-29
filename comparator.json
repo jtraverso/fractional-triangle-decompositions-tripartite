@@ -1,6 +1,6 @@
 {
-  "challenge_module": "Challenge",
-  "solution_module": "Solution",
+  "challenge_module": "ABLPChallenge",
+  "solution_module": "ABLPSolution",
   "theorem_names": [
     "ABLP2026.lemma_2_1",
     "ABLP2026.proposition_3_1",

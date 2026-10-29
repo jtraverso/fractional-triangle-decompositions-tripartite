@@ -33,9 +33,9 @@ fractional-to-exact transfer of Barber, Kühn, Lo, Osthus and Taylor for tripart
 
 ## Files
 
-- [`Challenge.lean`](Challenge.lean): the definitions and the seven statements; it imports only
+- [`ABLPChallenge.lean`](ABLPChallenge.lean): the definitions and the seven statements; it imports only
   Mathlib.
-- [`Solution.lean`](Solution.lean): the same definitions, copied verbatim, and a proof of each
+- [`ABLPSolution.lean`](ABLPSolution.lean): the same definitions, copied verbatim, and a proof of each
   statement from the library.
 - [`PartiteFractional/`](PartiteFractional): the library (namespace `ABLP`).
 - [`scripts/bernstein44.py`](scripts/bernstein44.py): regenerates

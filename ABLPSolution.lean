@@ -9,9 +9,9 @@ public import Mathlib
 public import PartiteFractional.Numerics
 
 /-!
-# Proofs of the statements in `Challenge.lean`
+# Proofs of the statements in `ABLPChallenge.lean`
 
-The definitions are copied verbatim from `Challenge.lean`; they agree definitionally with the
+The definitions are copied verbatim from `ABLPChallenge.lean`; they agree definitionally with the
 library definitions in the namespace `ABLP` (`PartiteFractional/`). Each theorem is the
 corresponding library result:
 `ABLP.not_fracDecomp_iff` (Lemma 2.1), `ABLP.prop_3_1`, `ABLP.cor_3_5`, `ABLP.prop_4_2`,

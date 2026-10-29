@@ -1,6 +1,6 @@
 name = "partite_fractional"
 version = "0.1.0"
-defaultTargets = ["PartiteFractional", "Challenge", "Solution"]
+defaultTargets = ["PartiteFractional", "ABLPChallenge", "ABLPSolution"]
 requiresModuleSystem = true
 
 [leanOptions]
@@ -27,9 +27,9 @@ name = "PartiteFractional"
 globs = ["PartiteFractional.+"]
 
 [[lean_lib]]
-name = "Challenge"
-roots = ["Challenge"]
+name = "ABLPChallenge"
+roots = ["ABLPChallenge"]
 
 [[lean_lib]]
-name = "Solution"
-roots = ["Solution"]
+name = "ABLPSolution"
+roots = ["ABLPSolution"]

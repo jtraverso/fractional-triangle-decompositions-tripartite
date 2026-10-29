@@ -1,6 +1,6 @@
 # Mathlib definitions used in the statements
 
-The statements in [`Challenge.lean`](Challenge.lean) use the following
+The statements in [`ABLPChallenge.lean`](ABLPChallenge.lean) use the following
 Mathlib definitions. They are reproduced verbatim from Mathlib at the pinned revision
 `c55e6e786f49471c72fbddbec5415808896aec1e` (Lean `v4.35.0-rc3`).
 
