@@ -1,0 +1,164 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Fractional triangle decompositions of dense tripartite graphs"
+  description: >-
+    A Lean 4 / Mathlib formalization of the main results of Allsop, Bowtell, Lesgourgues and
+    Petrova, "Improved bounds on completion of partial Latin squares" (arXiv:2609.37877, 2026): there is η > 0 (here η = 1/20000) such that every K₃-divisible spanning subgraph of
+    K_{n,n,n} with minimum partite degree at least (0.769 − η)n has a fractional triangle
+    decomposition (Theorem 1.3). Also formalized: the Farkas characterization (Lemma 2.1); the
+    reduction to triangle-covered, balanced, untied and nonzero edge weightings (Proposition 3.1,
+    Corollary 3.5), with Lemma 3.4 proved through an integral maximum flow; the non-uniform
+    proportional discharging (Definition 4.1) and its two estimates (Propositions 4.2 and 4.3);
+    and the numerical inequality g_d ≥ 1 for the article's piecewise-linear f (Proposition 4.4).
+    The two-variable inequalities of Proposition 4.4, which the article settles by numerical
+    minimisation, are proved exactly by Bernstein certificates checked in Lean.
+  authors:
+    - "Juan Pablo Traverso Gianini"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Juan Pablo Traverso Gianini"
+
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05C70", "05B15", "90C05"]
+
+sources:
+  - title: "Improved bounds on completion of partial Latin squares"
+    authors:
+      - "Jack Allsop"
+      - "Candida Bowtell"
+      - "Thomas Lesgourgues"
+      - "Kalina Petrova"
+    id: "arXiv:2609.37877"
+    type: "preprint"
+    location: >-
+      arXiv:2609.37877v1 (30 September 2026), Theorem 1.3, Lemma 2.1, Proposition 3.1, Corollary 3.5,
+      Definition 4.1, Propositions 4.2, 4.3 and 4.4, and Appendix A
+    relationship: "formalizes"
+    note: >-
+      Preprint, not peer reviewed. The formalization is by a different author; the article's
+      authors were not involved. Proposition 3.1 and Proposition 4.4 are proved by routes that
+      differ from the article's (see fidelity).
+    license: "unknown"
+    author_endorsement: "none"
+
+related_formalizations:
+  - id: "PALOMAR-2026-10-28-000028 v2 (jtraverso/erdos81-fractional-split-profiles)"
+    relationship: "builds-on"
+    note: >-
+      Lemma 2.1 is derived from the finite Farkas lemma FiniteLP.farkas_ge of that entry
+      (ErdosPaperI.FiniteLPDuality), used through a pinned dependency.
+  - id: "PALOMAR-2026-10-15-000008 (jtraverso/dross-fractional-triangle-decomposition)"
+    relationship: "builds-on"
+    note: >-
+      The integral flow of Claim 3.4.1 is built on the max-flow/min-cut theorem
+      (LeanPool.MaxFlowMinCut) of that entry, used through a pinned dependency. The two entries
+      address the same problem: Dross proves fractional triangle decompositions of general graphs
+      with minimum degree at least 0.9n.
+  - id: "PALOMAR-2026-10-15-000011 (jtraverso/asymptotic-triangle-packing)"
+    relationship: "other"
+    note: >-
+      The definition IsFracTriangleDecomp has the same form as in version 2 of that entry, which
+      turns fractional triangle decompositions into approximate ones.
+
+status:
+  scope: >-
+    All seven statements are proved. Theorem 1.3 is stated for every finite vertex type in
+    universe 0 with a map to Fin 3, every n, and η = 1/20000 exhibited.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5"]
+      framework: "Claude Code (Anthropic)"
+      tool_setup: >-
+        Wrote the whole Lean development (PartiteFractional/), the Challenge/Solution pair and the
+        packaging, from the article, under the author's direction; for Proposition 4.4 also wrote
+        scripts/bernstein44.py, which computes the Bernstein subdivisions and coefficients in
+        exact rational arithmetic and generates PartiteFractional/Bernstein44.lean (each
+        certificate is checked by Lean with ring). Margins were first measured numerically in
+        Python, and one subdivision was cross-checked with the certo tool. Checked with a local
+        build, a comparison of the elaborated Challenge and Solution statements and definitions
+        (pp.all), and #print axioms (Lean v4.35.0-rc3, Mathlib
+        c55e6e786f49471c72fbddbec5415808896aec1e).
+      cost:
+        wall_time: "about two days"
+        spend_usd: "subscription-based"
+        hardware: "local machine"
+      prompting_notes: "Natural-language instructions in Spanish, directed by the author."
+  spend_usd: "not tracked"
+  notes: >-
+    The Lean development is AI-written under the author's direction and mechanically verified:
+    no sorry, axioms limited to propext, Classical.choice and Quot.sound, identical elaborated
+    statements and definitions in the Challenge and the Solution.
+
+fidelity:
+  divergences: >-
+    A tripartite graph is a SimpleGraph on a finite type with a map part : V → Fin 3 separating
+    adjacent vertices; a spanning subgraph of K_{n,n,n} is one whose three parts have n vertices.
+    Edge weightings are functions Sym2 V → ℝ; only their values on edges matter. The minimum
+    partite degree hypothesis is stated vertex by vertex for each other part. The red degree d_v
+    is defined as the number of negative edges from v to the previous part (indices mod 3); for a
+    balanced weighting it equals the number to the next part, as in the article. The transfer
+    dis^f_φ(b, r) of Definition 4.1 is defined through ordered vertex triples (dis u v w: from the
+    blue edge vw to the red edge uv in the triangle uvw) and disE b r sums the triples with
+    s(v, w) = b and s(u, v) = r; this is the article's definition, including its convention that
+    it vanishes off quasi-positive and quasi-negative triangles. M uses Mathlib's sSup, whose value
+    on the empty set is 0, the article's convention; the sets involved are bounded. Proposition
+    4.3 records the article's observations 0 < y ≤ x < 1 and x + y ≤ 1 in its conclusion. Some
+    hypotheses of Propositions 4.2 and 4.3 are not used by the proofs (K₃-divisibility; in 4.2
+    also the monotonicity of f; in 4.3 also 0 ≤ d < 1/2 and nonzeroness); they are kept so that
+    the statements match the article. Proof routes: Proposition 3.1 makes the weighting untied by
+    a generic perturbation φ_p + ν·a instead of the article's ordering of the edges; Proposition
+    4.4 uses the bound M(a, b) ≥ √70/(3√a) − 5/3 − 1/(6a) for all a > 0 (AM–GM) and proves the
+    two-variable inequalities of Case 3, which the article reports from a numerical minimisation,
+    by exact Bernstein certificates, at d = 0.23105, then transfers to smaller d by monotonicity.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "Claude Opus 5.5 (AI agent in Claude Code, acting for the author)"
+  notes: >-
+    Agent review by Claude Opus 5.5, distinct from the mechanical verification: the agent checked
+    the seven statements and the definitions against the article. No independent human review of
+    the formalization has been performed, and the article's authors have not reviewed it.
+
+alignment:
+  namespace: "ABLP2026"
+  statements:
+    - source: "Theorem 1.3: δ̂(G) ≥ (0.769 − η)n implies a fractional K₃-decomposition"
+      lean: "ABLP2026.theorem_1_3"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 2.1: no fractional K₃-decomposition iff a triangle-covered, totally negative weighting exists"
+      lean: "ABLP2026.lemma_2_1"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 3.1: perturbation to a triangle-covered, balanced, untied, nonzero weighting"
+      lean: "ABLP2026.proposition_3_1"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary 3.5"
+      lean: "ABLP2026.corollary_3_5"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 4.2: a positive edge sends at most its weight"
+      lean: "ABLP2026.proposition_4_2"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 4.3: lower bound g_d(x, y) for the weight received by a negative edge"
+      lean: "ABLP2026.proposition_4_3"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 4.4: g_d ≥ 1 for the function f of (8) and d ≤ 0.231 + η"
+      lean: "ABLP2026.proposition_4_4"
+      module: "Challenge"
+      status: "proved"
+
+acknowledgements: >-
+  Mathlib and the Lean community.

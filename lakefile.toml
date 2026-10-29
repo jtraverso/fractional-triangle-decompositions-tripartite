@@ -1,0 +1,35 @@
+name = "partite_fractional"
+version = "0.1.0"
+defaultTargets = ["PartiteFractional", "Challenge", "Solution"]
+requiresModuleSystem = true
+
+[leanOptions]
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0-rc3"
+
+[[require]]
+name = "erdos81_paper1"
+git = "https://github.com/jtraverso/erdos81-fractional-split-profiles"
+rev = "f8690bcba57bddc5deefd8626f5b07e0d63e6086"
+
+[[require]]
+name = "dross"
+git = "https://github.com/jtraverso/dross-fractional-triangle-decomposition"
+rev = "7720b7b591e606d5a56f1d935d8be650dcbf6c6f"
+
+[[lean_lib]]
+name = "PartiteFractional"
+globs = ["PartiteFractional.+"]
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]
