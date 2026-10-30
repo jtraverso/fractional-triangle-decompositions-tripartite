@@ -13,7 +13,9 @@ project:
     proportional discharging (Definition 4.1) and its two estimates (Propositions 4.2 and 4.3);
     and the numerical inequality g_d ≥ 1 for the article's piecewise-linear f (Proposition 4.4).
     The two-variable inequalities of Proposition 4.4, which the article settles by numerical
-    minimisation, are proved exactly by Bernstein certificates checked in Lean.
+    minimisation, are proved exactly by Bernstein certificates checked in Lean. Not formalized:
+    the article's Corollary 1.4 (completion of partial Latin squares), which also needs the
+    fractional-to-exact transfer of Barber, Kühn, Lo, Osthus and Taylor for tripartite graphs.
   authors:
     - "Juan Pablo Traverso Gianini"
   license: "Apache-2.0"
@@ -66,7 +68,12 @@ related_formalizations:
 status:
   scope: >-
     All seven statements are proved. Theorem 1.3 is stated for every finite vertex type in
-    universe 0 with a map to Fin 3, every n, and η = 1/20000 exhibited.
+    universe 0 with a map to Fin 3, every n, and η = 1/20000 exhibited. Known gap: Corollary 1.4
+    of the article (every partial Latin square of large order n with at most 0.231n occurrences
+    of each row, column and symbol can be completed) is not formalized; it combines Theorem 1.3
+    with the fractional-to-exact transfer of Barber, Kühn, Lo, Osthus and Taylor (Corollary 1.6
+    of arXiv:1603.01043), which is not part of this entry. The entry covers fractional
+    decompositions only.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: []
